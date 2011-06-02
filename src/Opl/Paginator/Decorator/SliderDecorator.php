@@ -14,33 +14,68 @@ use Opl\Collector\ProviderInterface;
 use Opl\Paginator\Paginator;
 use Opl\Paginator\Exception\DecoratorException;
 
+/**
+ * Slider decorator produces the links to the given range of pages around
+ * the current active page, i.e <tt> 5 6 7 [8] 9 10 11</tt>.
+ * 
+ * @author Tomasz Jędrzejewski
+ * @copyright Invenzzia Group <http://www.invenzzia.org/> and contributors.
+ * @license http://www.invenzzia.org/license/new-bsd New BSD License
+ */
 class SliderDecorator implements DecoratorInterface
 {
+	/**
+	 * The decorated object
+	 * @var DecoratorInterface
+	 */
 	protected $decorator;
+	/**
+	 * The handled paginator
+	 * @var Paginator
+	 */
 	protected $paginator;
+	/**
+	 * Default slider range.
+	 * @var integer
+	 */
 	protected $range = 2;
 	
+	/**
+	 * @see DecoratorInterface
+	 */
 	public function setConfig(ProviderInterface $provider)
 	{
 		$this->range = $provider->get('range');
 	} // end setConfig();
 
+	/**
+	 * @see DecoratorInterface
+	 */
 	public function setPaginator(Paginator $paginator)
 	{
 		$this->paginator = $paginator;
 	} // end setPaginator();
 	
+	/**
+	 * @see DecoratorInterface
+	 */
 	public function getPaginator()
 	{
 		return $this->paginator;
 	} // end getPaginator();
 	
+	/**
+	 * @see DecoratorInterface
+	 */
 	public function decorate(DecoratorInterface $decorator)
 	{
 		$this->decorator = $decorator;
 		return $decorator;
 	} // end decorate();
 
+	/**
+	 * @see DecoratorInterface
+	 */
 	public function getPages()
 	{
 		if(null === $this->paginator)

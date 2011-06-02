@@ -17,6 +17,10 @@ use Opl\Paginator\Decorator\DecoratorInterface;
  * This is a default paginator factory implementation that configures
  * the paginator using the settings from the configuration. The implementation
  * requires the Open Power Collector library to work.
+ * 
+ * @author Tomasz Jędrzejewski
+ * @copyright Invenzzia Group <http://www.invenzzia.org/> and contributors.
+ * @license http://www.invenzzia.org/license/new-bsd New BSD License
  */
 class ConfigPaginatorFactory implements PaginatorFactoryInterface
 {

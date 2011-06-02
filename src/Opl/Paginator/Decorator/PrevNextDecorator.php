@@ -14,32 +14,63 @@ use Opl\Collector\ProviderInterface;
 use Opl\Paginator\Paginator;
 use Opl\Paginator\Exception\DecoratorException;
 
+/**
+ * This decorator emits the [Previous] and [Next] links wrapping the entire
+ * decorated set.
+ * 
+ * @author Tomasz Jędrzejewski
+ * @copyright Invenzzia Group <http://www.invenzzia.org/> and contributors.
+ * @license http://www.invenzzia.org/license/new-bsd New BSD License
+ */
 class PrevNextDecorator implements DecoratorInterface
 {
+	/**
+	 * The decorated object
+	 * @var DecoratorInterface
+	 */
 	protected $decorator;
+	/**
+	 * The handled paginator
+	 * @var Paginator
+	 */
 	protected $paginator;
 	
+	/**
+	 * @see DecoratorInterface
+	 */
 	public function setConfig(ProviderInterface $provider)
 	{
 		/* null */
 	} // end setConfig();
 
+	/**
+	 * @see DecoratorInterface
+	 */
 	public function setPaginator(Paginator $paginator)
 	{
 		$this->paginator = $paginator;
 	} // end setPaginator();
 	
+	/**
+	 * @see DecoratorInterface
+	 */
 	public function getPaginator()
 	{
 		return $this->paginator;
 	} // end getPaginator();
 	
+	/**
+	 * @see DecoratorInterface
+	 */
 	public function decorate(DecoratorInterface $decorator)
 	{
 		$this->decorator = $decorator;
 		return $decorator;
 	} // end decorate();
 	
+	/**
+	 * @see DecoratorInterface
+	 */
 	public function getPages()
 	{
 		if(null === $this->paginator)
