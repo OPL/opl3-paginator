@@ -107,7 +107,7 @@ class SliderDecorator implements DecoratorInterface
 		}
 		$pages[] = array(
 			'type' => 'current',
-			'page' => $page
+			'page' => $page++
 		);
 		for($i = 0; $i < $realNextRange; $i++)
 		{
