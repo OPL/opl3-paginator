@@ -126,35 +126,35 @@ class BoundaryDecorator implements DecoratorInterface
 		$decoratedPages = array();
 		$currentPage = $this->paginator->getCurrentPage();
 		$pageNumber = $this->paginator->getPageNum();
-		$lowerBoundary = ($this->range < $firstPage ? $this->range : $firstPage);
-		$upperBoundary = ($pageNumber - $range > $lastPage ? $pageNumber - $range : $lastPage);
+		$lowerBoundary = ($this->range + 1 < $firstPage ? ($this->range + 1) : $firstPage);
+		$upperBoundary = ($pageNumber - $this->range > $lastPage ? $pageNumber - $this->range : $lastPage);
 		
 		for($i = 1; $i < $lowerBoundary; $i++)
 		{
-			$pages[] = array(
+			$decoratedPages[] = array(
 				'type' => ($currentPage == $i ? 'current' : 'page'),
 				'page' => $i
 			);
 		}
-		if($firstPage - $i > 1)
+		if($firstPage - $i > 0)
 		{
-			$pages[] = array('type' => 'gap');
+			$decoratedPages[] = array('type' => 'gap');
 		}
-		foreach($decoratedPages as $page)
+		foreach($pages as $page)
 		{
-			$pages[] = $page;
+			$decoratedPages[] = $page;
 		}
-		if($upperBoundary - $lastPage > 1)
+		if($upperBoundary - $lastPage > 0)
 		{
-			$pages[] = array('type' => 'gap');
+			$decoratedPages[] = array('type' => 'gap');
 		}
-		for($i = $upperBoundary; $i <= $pageNumber; $i++)
+		for($i = $upperBoundary + 1; $i <= $pageNumber; $i++)
 		{
-			$pages[] = array(
+			$decoratedPages[] = array(
 				'type' => ($currentPage == $i ? 'current' : 'page'),
 				'page' => $i
 			);
 		}
-		return $pages;
+		return $decoratedPages;
 	} // end getPages();
 } // end BoundaryDecorator;
