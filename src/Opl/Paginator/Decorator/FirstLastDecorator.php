@@ -71,6 +71,14 @@ class FirstLastDecorator implements DecoratorInterface
 	/**
 	 * @see DecoratorInterface
 	 */
+	public function getDecorator()
+	{
+		return $this->decorator;
+	} // end getDecorator();
+	
+	/**
+	 * @see DecoratorInterface
+	 */
 	public function getPages()
 	{
 		if(null === $this->paginator)

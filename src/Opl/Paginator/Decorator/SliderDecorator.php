@@ -72,6 +72,14 @@ class SliderDecorator implements DecoratorInterface
 		$this->decorator = $decorator;
 		return $decorator;
 	} // end decorate();
+	
+	/**
+	 * @see DecoratorInterface
+	 */
+	public function getDecorator()
+	{
+		return $this->decorator;
+	} // end getDecorator();
 
 	/**
 	 * @see DecoratorInterface

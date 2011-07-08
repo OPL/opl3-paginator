@@ -49,6 +49,13 @@ interface DecoratorInterface
 	 * @param DecoratorInterface $decorator The decorated object.
 	 */
 	public function decorate(DecoratorInterface $decorator);
+	
+	/**
+	 * Returns the nested decorator
+	 * 
+	 * @return DecoratorInterface
+	 */
+	public function getDecorator();
 	/**
 	 * Produces an array with the control commands that allow the view layer
 	 * to draw a pagination list. The method is obliged to concatenate its
